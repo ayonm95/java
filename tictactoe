@@ -1,0 +1,300 @@
+import java.io.*;
+import java.lang.Math;
+class ticktactoe
+{
+    static String t[][]=new String[3][3];
+    static String stri;
+    int chance=0;
+    int i=0,j=0;
+     static int l[]=new int[10];
+     static void end()
+     {
+        System.out.print("\n THANKS FOR PLAYING");
+    }
+ static void intial( )
+ throws IOException
+    
+    {
+        int i=0,j=0; int k=1,e=0;
+        // initializing
+        while(i<3)
+        {
+           while(j<3) 
+           {
+            t[i][j]=String.valueOf(k);
+            l[k]=k;
+            k=k+1;
+        j=j+1;}
+        j=0;
+    
+        i=i+1;
+        
+        }
+        i=0;
+        j=0;
+        
+        e=ticktactoe.display(t,l,0);
+    }
+    static int display(String t[][],int l[],int chance)
+    throws IOException
+    {
+    // printing 
+    int i=0,j=0,e=0;
+
+        System.out.println();
+        while(i<3)
+        {
+            System.out.print("\t");
+           while(j<3) 
+           {
+            System.out.print(" "+t[i][j]+" ");
+            if(j!=2)
+            System.out.print("|");
+        j=j+1;}
+        j=0;
+        System.out.println();
+        if(i!=2)
+        System.out.println("\t___________\n");
+        i=i+1;
+        
+        }
+        //PRINTINGDONE
+        if(chance!=10)
+        {
+        check(t,l,chance,0);
+        return 0;
+    }
+    else return 10;
+    }
+    static String user()
+    throws IOException
+    {
+        System.out.println("\n\tPLAYER 2 ENTER YOUR CHOICE");
+        InputStreamReader reader=new InputStreamReader(System.in);
+        BufferedReader input=new BufferedReader(reader);
+        stri=input.readLine();
+        return stri;
+    }
+    static void check(String t[][],int l[],int chance,int e)
+    throws IOException
+    {
+        int i=0,j=0;
+    int a,b;   
+        int ch=0;
+        //condition
+       do{
+            if(chance!=0)
+            System.out.println("\n\n\n\n\n\n\n");
+            if(chance%2==0 && chance!=10)
+            {
+          System.out.println("\n\tPLAYER 1 ");
+                while(true)
+                {
+            
+            ch=(int)(Math.random()*10);
+  
+            if(ch==1 && l[1]==1 )
+            {
+                l[1]=0;
+            break; 
+        }
+            else if(ch==2 && l[2]==2 )
+            {
+                l[2]=0;
+            break; 
+        }
+            else if(ch==3 && l[1]==3 )
+            {
+                l[3]=0;
+            break; 
+        }
+            else if(ch==4 && l[1]==4 )
+            {
+                l[4]=0;
+            break; 
+        }
+            else if(ch==5 && l[1]==5 )
+            {
+                l[5]=0;
+            break; 
+        }
+            else if(ch==6 && l[6]==6 )
+            {
+                l[6]=0;
+            break; 
+        }
+            else if(ch==7 && l[7]==7 )
+            {
+                l[7]=0;
+            break; 
+        }
+            else if(ch==8 && l[8]==8 )
+            {
+                l[8]=0;
+            break; 
+        }
+            else if(ch==9 && l[9]==9 )
+            {
+                l[9]=0;
+            break; 
+        }
+            
+        }
+            
+            switch(ch){
+            case 1:
+                t[0][0]="X";
+                l[1]=0;
+                break;
+                case 2:
+                    t[0][1]="X";
+                    l[2]=0;
+                break;
+                case 3:
+                    t[0][2]="X";
+                    l[3]=0;
+                break;
+                case 4:
+                    t[1][0]="X";
+                    l[4]=0;
+                break;
+                case 5:
+                    t[1][1]="X";
+                    l[5]=0;
+                break;
+                case 6:
+                    t[1][2]="X";
+                    l[6]=0;
+                break;
+                case 7:
+                    t[2][0]="X";
+                    l[7]=0;
+                break;
+                case 8:
+                    t[2][1]="X";
+                    l[8]=0;
+                break;
+                case 9:
+                    t[2][2]="X";l[9]=0;
+                break;
+            }}
+        else if(chance%2!=0 && chance!=10)
+        {
+            while(true)
+            {
+        stri=user();
+        char c=stri.charAt(0);
+        if(Character.isDigit(c))
+        {
+            ch=Integer.parseInt(stri);
+            if(ch>0 &&ch<10 && l[ch]!=0)
+            break; 
+        }}
+            switch(ch){
+            case 1:
+                t[0][0]="O";
+                l[1]=0;
+                break;
+                case 2:
+                    t[0][1]="O";
+                    l[2]=0;
+                break;
+                case 3:
+                    t[0][2]="O";
+                    l[3]=0;
+                break;
+                case 4:
+                    t[1][0]="O";
+                    l[4]=0;
+                break;
+                case 5:
+                    t[1][1]="O";
+                    l[5]=0;
+                break;
+                case 6:
+                    t[1][2]="O";
+                    l[6]=0;
+                break;
+                case 7:
+                    t[2][0]="O";
+                    l[7]=0;
+                break;
+                case 8:
+                    t[2][1]="O";
+                    l[8]=0;
+                break;
+                case 9:
+                    t[2][2]="O";
+                    l[9]=0;
+                break;
+            }}
+        
+            if((chance !=10 && t[0][0]=="X" && t[0][1]=="X"&& t[0][2]=="X")||(t[1][0]=="X" && t[1][1]=="X"&& t[1][2]=="X")||( t[2][0]=="X" && t[2][1]=="X"&& t[2][2]=="X")||(t[0][0]=="X" && t[1][0]=="X"&& t[2][0]=="X")||(t[0][1]=="X" && t[1][1]=="X"&& t[2][1]=="X")||(t[0][2]=="X" && t[1][2]=="X"&& t[2][2]=="X")||(t[0][0]=="X" && t[1][1]=="X"&& t[2][2]=="X"))
+    {
+        System.out.println("\n\n\n\n\n\n\n");
+        i=0;
+        j=0;
+        // printing 
+        System.out.println("\nPLAYER `1 WINS!! ");
+        chance=10;
+        e=ticktactoe.display(t,l,chance);
+        if(e==10)
+        ticktactoe.end();
+      
+            
+            
+        }
+             else  if((chance !=10 && t[0][0]=="O" && t[0][1]=="O"&& t[0][2]=="O")||(t[1][0]=="O" && t[1][1]=="O"&& t[1][2]=="O")||( t[2][0]=="O" && t[2][1]=="O"&& t[2][2]=="O")||(t[0][0]=="O" && t[1][0]=="O"&& t[2][0]=="O")||(t[0][1]=="O" && t[1][1]=="O"&& t[2][1]=="O")||(t[0][2]=="O" && t[1][2]=="O"&& t[2][2]=="O")||(t[0][0]=="O" && t[1][1]=="O"&& t[2][2]=="O"))
+    {
+            
+
+        System.out.println("\n\n\n\n\n\n");
+        i=0;
+        j=0;
+        // printing 
+        System.out.println("\nPLAYER 2 WINS!!");
+        chance=10;
+        e=ticktactoe.display(t,l,chance);
+        if(e==10)
+        ticktactoe.end();
+        
+        //PRINTINGDONE
+            
+        }
+        else if(chance!=10)
+        {
+        i=0;
+        j=0;
+        // printing
+        chance=chance+1;
+        if(chance==8)
+            {
+                System.out.println("TIE");
+                chance=10;
+            }
+        e=ticktactoe.display(t,l,chance);
+        if(e==10)
+        ticktactoe.end();
+        //PRINTINGDONE            
+            
+            
+            
+        }break;}while(true);
+    }
+    public static void main(String args[])
+    throws IOException
+    {
+        
+        ticktactoe.intial();
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+}}
+
