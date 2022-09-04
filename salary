@@ -1,0 +1,330 @@
+import java.io.*;
+import java.util.Scanner;
+class staff
+{
+    int id,workingh;
+    String name;
+    static int salary;
+    staff(int id,String name,int workingh)
+    {
+        this.name=name;
+        this.id=id;
+        this.workingh=workingh;
+    }
+    void calc(int d,int speed)
+    {
+        if(d==1)
+        {
+            this.salary=50000;
+            if(workingh!=30)
+            this.salary=this.salary-((30-workingh)*500);
+        }
+        if(d==2)
+        {
+            this.salary=40000;
+            if(workingh!=30)
+            this.salary=this.salary-((30-workingh)*600);
+        }
+        if(d==3)
+        {
+            this.salary=35000;
+            if(workingh!=30)
+            this.salary=this.salary-((30-workingh)*700);
+        }
+        if(d==4)
+        {
+            this.salary=30000;
+            if(workingh!=30)
+            this.salary=this.salary-((30-workingh)*750);
+        }
+        if(d==5)
+        {
+            
+            if(speed>=40)
+            this.salary=20000;
+            else 
+            this.salary=15000;
+            if(workingh!=30)
+            this.salary=this.salary-((30-workingh)*250);
+        }
+        if(d==6)
+        {
+            if(speed>=40)
+            this.salary=workingh*600;
+            else
+            this.salary=workingh*500;
+        }
+        if(d==7)
+        {
+            this.salary=30000;
+            if(workingh!=30)
+            this.salary=this.salary-((30-workingh)*200);
+        }
+        if(d==8)
+        {
+            this.salary=25000;
+            if(workingh!=30)
+            this.salary=this.salary-((30-workingh)*250);
+        }
+         display();
+    }
+    void display()
+    {
+        System.out.println("\n\n...............................................");
+     System.out.println("NAME ="+name+"\nTOTAL WORKING DAY ="+workingh+"\nSALARY ="+this.salary);
+      System.out.println("...............................................\n");
+    }
+}
+class teacher extends staff
+{
+    int subject,publications,salary,designation;
+    teacher(int subject,int publications,int id,String name,int workingh,int designation)
+    {
+    super(id,name,workingh);
+    this.subject=subject;
+    this.publications=publications;
+    this.designation=designation;
+    super.calc(designation,0);
+    }
+}
+class typist extends staff
+{
+    int speed;
+    typist(int speed,int id,String name,int workingh,int des)
+    {
+    super(id,name,workingh);
+    this.speed=speed;
+    super.calc(des,speed);
+    }
+}
+class regular extends typist
+{
+    regular(int speed,int id,String name,int workingh)
+    {
+        super(speed,id,name,workingh,5);
+    }
+}
+class casual extends typist
+{
+    casual(int speed,int id,String name,int workingh)
+    {
+        super(speed,id,name,workingh,6);
+    }
+}
+class officer extends staff
+{
+    int grade;
+    officer(int id,String name,int workingh,int grade)
+    {
+        super(id,name,workingh);
+        this.grade=grade;
+        if(grade==1)
+        super.calc(7,0);
+        else
+        super.calc(8,0);
+    }
+}
+class main2
+{
+    public static void main(String args[])
+    throws IOException
+    {
+        InputStreamReader reader=new InputStreamReader(System.in);
+        BufferedReader input=new BufferedReader(reader);
+        int i,n,count=0,id,wd,d,ty=0,of=0,ca=0,re=0;
+        String name;String character;
+        while(true)
+        {
+        System.out.println("Enter Number of Employees");
+        character=input.readLine();
+        if(Character.isDigit(character.charAt(0)))
+         { 
+         n=Integer.parseInt(character);
+         if(n>=0)
+         break;
+         else
+         System.out.println("Renter"); 
+         }
+        else
+          System.out.println("Renter"); 
+    }
+        officer o[]=new officer[n];
+        regular r[]=new regular[n];
+        casual c[]=new casual[n];
+        teacher t[]=new teacher[n];
+        int store[]=new int[n];
+        int z=0,y=0;
+        while(count<n)
+        {
+        System.out.println("Enter Employee Name");
+        name=input.readLine();
+        while(true)
+        {
+        System.out.println("Enter id : \nTEACHER:1XXX\nOFFICER:2XXX\nTYPIST:\nREGULAR:3XXX  CASUAL:4XXX");
+        character=input.readLine();
+        if(Character.isDigit(character.charAt(0)))
+        {
+        id=Integer.parseInt(character);
+        y=0;
+        if(id>999 && id<5000)
+        {
+        while(y<n)
+        {
+            if(store[y]!=id)
+            y=y+1;
+            else
+            {
+                y=0;
+                System.out.println("Id already present");
+            while(true)
+             {
+                System.out.println("Enter id : \nTEACHER:1XXX\nOFFICER:2XXX\nTYPIST:\nREGULAR:3XXX  CASUAL:4XXX");
+                character=input.readLine();
+                if(Character.isDigit(character.charAt(0)))
+                 {
+                 id=Integer.parseInt(character);
+                 if(id>999 && id<5000)
+                     break;
+                }
+                else
+                 System.out.println("Error RENTER Valid ID number");
+             }
+        }
+    }
+    store[z]=id;
+    z=z+1;
+    break;
+}
+        else
+        System.out.println("Error RENTER");
+        }
+        else
+        System.out.println("Error RENTER");        
+        }
+        while(true)
+        {
+        System.out.println("Enter Total Working Days");
+        wd=Integer.parseInt(input.readLine());
+        if(wd>=0 && wd<32)
+         break;
+        else
+         System.out.println("Renter"); 
+        }
+        if(id>999 && id<2000)
+        {
+            int sub,pub,des;
+            while(true)
+            {
+            System.out.println("ENTER NO. OF SUBJECT TAUGHT");
+            character=input.readLine();
+            if(Character.isDigit(character.charAt(0)))
+            {
+             sub=Integer.parseInt(character);
+             if(sub>0)
+             break;
+             else
+             System.out.println("Renter"); 
+            }
+            else
+            {
+               System.out.println("Renter"); 
+            }
+            }
+            while(true)
+            {
+            System.out.println("ENTER NO. OF PUBLICATIONS DONE");
+            character=input.readLine();
+            if(Character.isDigit(character.charAt(0)))
+            {
+             pub=Integer.parseInt(character);
+             if(pub>0)
+             break;
+             else
+             System.out.println("Renter"); 
+            }
+            else
+            {
+               System.out.println("Renter"); 
+            }
+            }
+        while(true)
+        {
+        System.out.println("ENTER DESIGNATION :\n1)PRINCIPLE\n2)HOD\n3)CT\n4)Normal");
+            character=input.readLine();
+            if(Character.isDigit(character.charAt(0)))
+            {
+             des=Integer.parseInt(character);
+             if(des>0 && des<5)
+             break;
+             else
+             System.out.println("Renter"); 
+            }
+            else
+            {
+               System.out.println("Renter"); 
+            }
+        }
+            t[ty]=new teacher(sub,pub,id,name,wd,des);
+            ty=ty+1;
+        }
+        if(id>1999&&id<3000)
+        {
+            int grade;
+            while(true)
+            {
+            System.out.println("ENTER GRADE 1)5 STAR\t2)4 STAR");
+            character=input.readLine();
+            if(Character.isDigit(character.charAt(0)))
+            {
+             grade=Integer.parseInt(character);
+             if(grade>0&&grade<3)
+             break;
+             else
+             System.out.println("Renter"); 
+            }
+            else
+            {
+               System.out.println("Renter"); 
+            }
+            }
+            o[of]=new officer(id,name,wd,grade);
+            of=of+1;
+        }
+        if(id>2999 && id<5000)
+        {int speed;
+            while(true)
+            {
+            System.out.println("ENTER SPEED OR WORDS PERMIN >=40 OR <40");
+            character=input.readLine();
+            if(Character.isDigit(character.charAt(0)))
+            {
+             speed=Integer.parseInt(character);
+             if(speed>0)
+             break;
+             else
+             System.out.println("Renter"); 
+            }
+            else
+            {
+               System.out.println("Renter"); 
+            }
+            } 
+            if(id<3999)
+            {
+            r[re]=new regular(speed,id,name,wd);
+            re=re+1;
+            }
+            else
+            {
+            c[ca]=new casual(speed,id,name,wd);
+            ca=ca+1;
+        }
+        }
+        count=count+1;
+        }
+        if(n!=0)
+        System.out.println(">>>END<<<");
+        else
+        System.out.println("..EMPTY SET..\n\n>>>END<<<");
+    }
+}
